@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8"/>
+<head>
+    <!--<meta th:charset=/>-->
+    <!--<meta charset="utf-8" />-->
+    <!--<meta http-equiv="Content-Type"  content="ISO-8859-1"/>-->
+    <title>Title</title>
+    <style>
+        .size{
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>Create user</h1>
+<div class="size">
+    <p>
+    <a th:href="@{/blog/list}">Back to list</a>
+</p>
+</div>
+<p th:if="${message != null}">
+    <span th:text="${message}"></span>
+</p>
+<fieldset>
+    <legend>Fill information</legend>
+    <form th:action="@{/blog/create}" method="post" th:object="${user}">
+        <p><label>Title: </label></p>
+        <input type="text" th:field="*{title}" >
+        <p><label>Email: </label></p>
+        <input type="email" th:field="*{email}">
+        <p><label>Content: </label></p>
+        <textarea class="size" th:field="*{type}"></textarea>
+        <p><select th:field="*{category}">
+            <option th:each="p : ${category}" th:value="${p.id}" th:text="${p.name}"></option>
+        </select></p>
+        <p><button type="submit"><img src="/resources/131216hinh-nen-mat-trang-mo-ao-cuc-hap-dan.jpg" height="120" width="192"/></button></p>
+    </form>
+</fieldset>
+</body>
+</html>
